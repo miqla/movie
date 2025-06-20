@@ -6,9 +6,9 @@ import { MovieThumbnail } from "./components/movieThumbnail";
 function App() {
   return (
     <>
-      <main>
+      <main className="p-7">
         <p>Recommended for you</p>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-2">
           <MovieThumbnail />
           <MovieThumbnail />
         </div>
