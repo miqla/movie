@@ -1,15 +1,17 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { MovieThumbnail } from "./components/movieThumbnail";
 
 function App() {
-  const [count, setCount] = useState(0);
   return (
     <>
-      <main className="flex">
-        <p>Count: {count}</p>
-        <button onClick={() => setCount(count + 1)}>Add Count</button>
+      <main>
+        <p>Recommended for you</p>
+        <div className="flex gap-2">
+          <MovieThumbnail />
+          <MovieThumbnail />
+        </div>
       </main>
     </>
   );
