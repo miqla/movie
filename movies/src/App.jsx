@@ -13,6 +13,10 @@ function App() {
           <MovieThumbnail />
         </div>
         <p>Hot movies</p>
+        <div className="flex gap-2 mt-2">
+          <MovieThumbnail />
+          <MovieThumbnail />
+        </div>
       </main>
     </>
   );
