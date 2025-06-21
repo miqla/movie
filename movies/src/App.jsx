@@ -12,6 +12,7 @@ function App() {
           <MovieThumbnail />
           <MovieThumbnail />
         </div>
+        <p>Hot movies</p>
       </main>
     </>
   );
