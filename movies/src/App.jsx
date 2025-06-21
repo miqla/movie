@@ -47,8 +47,18 @@ function App() {
         </div>
         <p>Hot movies</p>
         <div className="flex gap-2 mt-2">
-          <MovieThumbnail />
-          <MovieThumbnail />
+          {loading && <p>Loading...</p>}
+          {error && <p>Error!</p>}
+          {console.log(movies)}
+          {!loading &&
+            movies.map((movie) => (
+              <MovieThumbnail
+                key={movie.id}
+                poster={movie.poster_path}
+                title={movie.title}
+                release_date={movie.release_date}
+              />
+            ))}
         </div>
       </main>
     </>
