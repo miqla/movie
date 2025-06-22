@@ -46,10 +46,9 @@ function App() {
     <>
       <main className="p-7">
         <p>Hot Movies</p>
-        <div className="flex gap-2 mt-2">
+        <div className="flex gap-2 my-2 overflow-auto pb-2">
           {loading && <p>Loading...</p>}
           {error && <p>Error!</p>}
-          {console.log(movies)}
           {!loading &&
             movies.map((movie) => (
               <MovieThumbnail
@@ -61,10 +60,9 @@ function App() {
             ))}
         </div>
         <p>Now Playing</p>
-        <div className="flex gap-2 mt-2">
+        <div className="flex gap-2 my-2 overflow-auto pb-2">
           {loading && <p>Loading...</p>}
           {error && <p>Error!</p>}
-          {console.log(popular)}
           {!loading &&
             popular.map((movie) => (
               <MovieThumbnail
