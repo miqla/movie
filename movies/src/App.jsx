@@ -42,6 +42,20 @@ function App() {
 
   return (
     <>
+      <nav className="flex bg-amber-100">
+        <h2>Movie Time</h2>
+        <form className="flex p-2 text-gray-200 border-gray-200 rounded-md w-1/2">
+          <input
+            className="w-full bg-blue-300"
+            type="search"
+            placeholder="Masukkan film yang anda cari..."
+          />
+          {/* <ul class="suggestions visible">
+          <!-- <li>Toronto</li> -->
+        </ul> */}
+          <button type="submit"></button>
+        </form>
+      </nav>
       <main className="p-7">
         <p>Hot Movies</p>
         <div className="flex gap-2 my-2 overflow-auto pb-2">
