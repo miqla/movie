@@ -8,6 +8,7 @@ function App() {
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [query, setQuery] = useState("");
 
   async function fetchMovies() {
     setLoading(true);
@@ -49,6 +50,9 @@ function App() {
             className="w-full bg-blue-300 m-0 py-2 px-8 text-sm border-transparent rounded-sm"
             type="search"
             placeholder="Masukkan film yang anda cari..."
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
           />
           {/* <ul class="suggestions visible">
           <!-- <li>Toronto</li> -->
