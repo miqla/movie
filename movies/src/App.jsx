@@ -1,8 +1,6 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { MovieThumbnail } from "./components/movieThumbnail";
-import { moviesApi, nowPlaying } from "./api/movies";
+import { moviesApi, nowPlaying, queryMovies } from "./api/movies";
 import { useEffect, useState } from "react";
 
 function App() {
