@@ -1,13 +1,15 @@
 import "./App.css";
 import { MovieThumbnail } from "./components/movieThumbnail";
-import { moviesApi, nowPlaying, queryMovies } from "./api/movies";
+import { moviesApi, nowPlaying, queryMovies, tmdbApi } from "./api/movies";
 import { useEffect, useState } from "react";
+import { SearchResult } from "./components/searchResults";
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [find, setFind] = useState([]);
   const [query, setQuery] = useState("");
 
   async function fetchMovies() {
@@ -35,6 +37,29 @@ function App() {
       setLoading(false);
     }
   }
+
+  async function fetchData(query) {
+    setLoading(true);
+    try {
+      const { data } = await tmdbApi({
+        url: "/search/movie",
+        method: "GET",
+        params: {
+          query: query,
+        },
+      });
+      const { results } = await data;
+      setFind(results);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchData(query);
+  }, [query]);
 
   useEffect(() => {
     fetchMovies();
@@ -68,6 +93,7 @@ function App() {
         </ul>
       </nav>
       <main className="p-7">
+        <SearchResult sub_title="Searching Results" data={find} />
         <p>Hot Movies</p>
         <div className="flex gap-2 my-2 overflow-auto pb-2">
           {loading && <p>Loading...</p>}
