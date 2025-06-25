@@ -1,6 +1,6 @@
 import "./App.css";
 import { MovieThumbnail } from "./components/movieThumbnail";
-import { moviesApi, nowPlaying, queryMovies, tmdbApi } from "./api/movies";
+import { nowPlaying, firstApi } from "./api/movies";
 import { useEffect, useState } from "react";
 import { SearchResult } from "./components/searchResults";
 
@@ -9,13 +9,12 @@ function App() {
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
   const [popular, setPopular] = useState([]);
-  const [find, setFind] = useState([]);
   const [query, setQuery] = useState("");
 
   async function fetchMovies() {
     setLoading(true);
     try {
-      const { data } = await moviesApi.get();
+      const { data } = await firstApi.get();
       const { results } = await data;
       setMovies(results);
     } catch (error) {
@@ -38,29 +37,6 @@ function App() {
     }
   }
 
-  async function fetchData(query) {
-    setLoading(true);
-    try {
-      const { data } = await tmdbApi({
-        url: "/search/movie",
-        method: "GET",
-        params: {
-          query: query,
-        },
-      });
-      const { results } = await data;
-      setFind(results);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchData(query);
-  }, [query]);
-
   useEffect(() => {
     fetchMovies();
     fetchPopular();
@@ -72,6 +48,7 @@ function App() {
         <h2>movieTime</h2>
         <form className="flex p-2 text-gray-200 border-gray-200 rounded-md w-1/2">
           <input
+            value={query}
             className="w-full bg-blue-300 m-0 py-2 px-8 text-sm border-transparent rounded-sm"
             type="search"
             placeholder="Masukkan film yang anda cari..."
@@ -93,7 +70,7 @@ function App() {
         </ul>
       </nav>
       <main className="p-7">
-        <SearchResult sub_title="Searching Results" data={find} />
+        <SearchResult sub_title="Searching Results" input_value={query} />
         <p>Hot Movies</p>
         <div className="flex gap-2 my-2 overflow-auto pb-2">
           {loading && <p>Loading...</p>}
