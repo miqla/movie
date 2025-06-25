@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import { moviesApi } from "../api/movies";
 
-export function SearchResult({ sub_title, input_value }) {
+export function MovieList({ sub_title, endpoint }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [find, setFind] = useState([]);
+  const [movies, setMovies] = useState([]);
 
-  async function fetchData(input_value) {
+  async function fetchMovies() {
     setLoading(true);
     try {
       const { data } = await moviesApi({
-        url: "/search/movie",
-        params: {
-          query: input_value,
-        },
+        url: endpoint,
       });
       const { results } = await data;
-      setFind(results);
+      setMovies(results);
     } catch (error) {
       setError(true);
       console.log(error);
@@ -25,24 +22,17 @@ export function SearchResult({ sub_title, input_value }) {
     }
   }
 
-  //   use debounce
   useEffect(() => {
-    const handler = setTimeout(() => {
-      fetchData(input_value);
-    }, 1000);
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [input_value]);
-
+    fetchMovies();
+  }, []);
   return (
     <>
-      {find.length > 0 && <p>{sub_title}</p>}
+      <p>{sub_title}</p>
       <div className="flex gap-2 my-2 overflow-auto pb-2">
         {loading && <p>Loading...</p>}
         {error && <p>Error!</p>}
         {!loading &&
-          find.map((movie) => (
+          movies.map((movie) => (
             <div className="card bg-base-100 w-40 shadow-sm" key={movie.id}>
               <figure className="w-40">
                 <img
