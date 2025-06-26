@@ -44,6 +44,7 @@ export function MovieList({ sub_title, endpoint }) {
               <div className="card-body">
                 <h2 className="card-title">{movie.title}</h2>
                 <p>{movie.release_date}</p>
+                <button className="btn btn-warning btn-xs">Favorite</button>
               </div>
             </div>
           ))}
