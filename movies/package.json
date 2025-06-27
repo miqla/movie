@@ -1,6 +1,6 @@
 {
   "name": "movies",
-  "private": true,
+  "private": false,
   "homepage": "https://miqla.github.io/movie/",
   "version": "0.0.0",
   "type": "module",
