@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNav } from "../components/UseNav";
+import { MovieList } from "../components/MovieList";
 
 export function Favorite() {
   const { nav, query } = useNav();
@@ -44,6 +45,11 @@ export function Favorite() {
             </div>
           ))}
         </div>
+        <MovieList
+          sub_title="Searching Results"
+          endpoint="/search/movie"
+          input_value={query}
+        />
       </main>
     </>
   );
