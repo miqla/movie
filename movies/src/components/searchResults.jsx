@@ -29,7 +29,7 @@ export function SearchResult({ sub_title, input_value }) {
   useEffect(() => {
     const handler = setTimeout(() => {
       fetchData(input_value);
-    }, 1000);
+    }, 750);
     return () => {
       clearTimeout(handler);
     };
